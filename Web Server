@@ -1,0 +1,37 @@
+# install web server di ubuntu server 20.04 #
+
+# install nginx #
+
+update repository
+$ sudo apt update
+
+install nginx
+$ sudo apt install nginx
+
+check app list ufw
+$ sudo ufw app list
+
+  Output
+  Available applications:
+               Nginx Full
+               Nginx HTTP
+               Nginx HTTPS
+               OpenSSH
+
+open port 80
+$ sudo ufw allow 'Nhinx HTTP'
+
+check status ufw
+$ sudo ufw status
+  Output
+  Status: active
+
+  To                         Action      From
+   --                         ------      ----
+   OpenSSH                    ALLOW       Anywhere                  
+   Nginx HTTP                 ALLOW       Anywhere                  
+   OpenSSH (v6)               ALLOW       Anywhere (v6)             
+   Nginx HTTP (v6)            ALLOW       Anywhere (v6)
+
+
+$ systemctl status nginx
