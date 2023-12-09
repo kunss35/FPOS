@@ -1,0 +1,40 @@
+# SSH adalah sebuah protokol administrasi yang memungkinkan user untuk mengakses dan memodifikasi berbagai macam pengaturan maupun file yang ada di dalam server.
+
+#### berikut adalah cara meninstall ssh server pada ubuntu ###
+
+$ sudo apt install openssh-server
+
+$ sudo systemctl status ssh
+# outputnya : 
+#	ssh.service - OpenBSD Secure Shell server
+#	     Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: enab>
+# 	    Active: active (running) since Sat 2023-12-09 11:14:21 UTC; 43min ago
+# 	      Docs: man:sshd(8)
+#             man:sshd_config(5)
+# 	   Process: 1748 ExecStartPre=/usr/sbin/sshd -t (code=exited, status=0/SUCCESS)
+# 	  Main PID: 1760 (sshd)
+# 	     Tasks: 1 (limit: 1049)
+# 	    Memory: 3.0M
+# 	    CGroup: /system.slice/ssh.service
+#  	           └─1760 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups
+
+### Konfigurasi SSH ###
+# setelah itu kita akan mengkonfigurasi permit login root(allow login root). tapi sebelum itu kita akan mengkonfigurasi password root karena secara default user root belum memiliki password
+$ sudo passwd
+# outputnya
+#	new password
+#	retype new password
+#	passwd: pasword updated successfully
+
+# jika sudah kita akan mengkonfigurasi sshd_config
+$ sudo nano /etc/ssh/sshd_config
+# cari #PermitRootLogin prohibit-password
+# ganti edit dengan menghilangkan tanda # didepannya dan prohibit-password menjadi yes
+# maka akan jadi seperti ini PermitRootLogin yes
+
+# save konfigurasi dan restart ssh
+$ sudo systemctl restart ssh
+
+# untuk mencoba buka command prompt dan ketik ssh root@ip address ubuntu kalian contoh :
+$ ssh root@192.168.1.8
+# lalu ikuti langkah selanjutnya
