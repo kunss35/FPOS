@@ -2,7 +2,8 @@
 
 Membuat server menggunakan ubuntu server 20.04 dengan service sebagai berikut:
 
-- Web server
+- Web server menggunakan engin x
 - SSH server
+- Monitoring menggunakan netdata
 
 
