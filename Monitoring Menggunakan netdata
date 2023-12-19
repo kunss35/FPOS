@@ -1,0 +1,28 @@
+## install netdata ##
+
+# Step 1 #
+$ sudo apt update
+
+# Step 2 #
+$ sudo apt install -y netdata
+
+# Step 3 - config #
+$ sudo nano /etc/netdata/netdata.conf
+  ganti bind socket menjadi 0.0.0.0 agar dapat di akses semua network
+  output :
+    [global]
+        run as user = netdata
+        web files owner = root
+        web files group = root
+        # Netdata is not designed to be exposed to potentially hostile
+        # networks. See https://github.com/netdata/netdata/issues/164
+        bind socket to IP = 0.0.0.0
+# Step 4 #
+$ sudo systemctl start netdata
+$ sudo systemctl enable netdata
+$ sudo systemctl status netdata
+  output
+
+# Step 5 #
+allow port menggunakan ufw. netdata bekerja pada port 19999
+$ ufw allow 19999/tcp
